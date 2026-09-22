@@ -1,1776 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Madina Passion | Personalised Poster</title>
-
-<style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-body{
-    min-height:100vh;
-    font-family:Inter,"Segoe UI",Arial,sans-serif;
-    background:
-        linear-gradient(135deg,#f4faf6,#edf6f0,#f9fbfa);
-    color:#17201a;
-    -webkit-font-smoothing:antialiased;
-}
-
-.app{
-    width:100%;
-    max-width:1050px;
-    margin:auto;
-    padding:25px 16px 45px;
-}
-
-/* HEADER */
-
-.header{
-    max-width:700px;
-    margin:0 auto 28px;
-    text-align:center;
-}
-
-.badge{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    padding:7px 14px;
-    margin-bottom:14px;
-    background:#e7f6ec;
-    color:#08752d;
-    border:1px solid #ccebd6;
-    border-radius:999px;
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:.7px;
-}
-
-.header h1{
-    color:#111827;
-    font-size:clamp(27px,5vw,40px);
-    font-weight:800;
-    line-height:1.15;
-    letter-spacing:-1px;
-}
-
-.support-text{
-    margin-top:6px;
-    color:#64748b;
-    font-size:clamp(16px,3vw,21px);
-}
-
-.campaign-name{
-    margin-top:12px;
-    color:#08752d;
-    font-size:clamp(27px,6vw,38px);
-    font-weight:800;
-    line-height:1.3;
-}
-
-.description{
-    margin-top:8px;
-    color:#7b8490;
-    font-size:13px;
-    line-height:1.6;
-}
-
-/* CARD */
-
-.card{
-    width:100%;
-    padding:24px;
-    background:rgba(255,255,255,.98);
-    border:1px solid #e3e9e5;
-    border-radius:22px;
-    box-shadow:
-        0 4px 8px rgba(0,0,0,.03),
-        0 18px 45px rgba(20,50,30,.08);
-}
-
-.layout{
-    display:grid;
-    grid-template-columns:320px minmax(0,1fr);
-    gap:30px;
-    align-items:start;
-}
-
-/* CONTROLS */
-
-.controls{
-    display:flex;
-    flex-direction:column;
-    gap:13px;
-}
-
-.section{
-    padding:16px;
-    background:#fff;
-    border:1px solid #e5ebe7;
-    border-radius:14px;
-    transition:.2s ease;
-}
-
-.section:focus-within{
-    border-color:#9ed5ae;
-    box-shadow:0 0 0 3px rgba(8,117,45,.06);
-}
-
-.section-title{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    margin-bottom:11px;
-    color:#1f2937;
-    font-size:14px;
-    font-weight:750;
-}
-
-/* INPUT */
-
-input[type="text"]{
-    width:100%;
-    height:48px;
-    padding:0 14px;
-    background:#f9faf9;
-    border:1px solid #dfe5e1;
-    border-radius:10px;
-    color:#111827;
-    outline:none;
-    font-family:inherit;
-    font-size:15px;
-    transition:.2s ease;
-}
-
-input[type="text"]::placeholder{
-    color:#9ca3af;
-}
-
-input[type="text"]:focus{
-    background:#fff;
-    border-color:#08752d;
-    box-shadow:0 0 0 3px rgba(8,117,45,.10);
-}
-
-/* FILE */
-
-.file-input{
-    width:100%;
-    padding:11px;
-    background:#f9faf9;
-    border:1.5px dashed #b9c8be;
-    border-radius:11px;
-    color:#66736b;
-    font-family:inherit;
-    font-size:12px;
-    cursor:pointer;
-}
-
-.file-input:hover{
-    background:#f2faf5;
-    border-color:#08752d;
-}
-
-.file-input::file-selector-button{
-    padding:8px 12px;
-    margin-right:9px;
-    border:0;
-    border-radius:8px;
-    background:#08752d;
-    color:#fff;
-    font-family:inherit;
-    font-size:12px;
-    font-weight:700;
-    cursor:pointer;
-}
-
-/* ZOOM */
-
-.zoom-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.zoom-row input[type="range"]{
-    flex:1;
-    accent-color:#08752d;
-    cursor:pointer;
-}
-
-.zoom-value{
-    width:50px;
-    padding:6px 5px;
-    background:#f8faf9;
-    border:1px solid #dfe4e1;
-    border-radius:7px;
-    color:#374151;
-    text-align:center;
-    font-size:12px;
-    font-weight:700;
-}
-
-/* POSITION */
-
-.move-grid{
-    display:grid;
-    grid-template-columns:repeat(3,42px);
-    justify-content:center;
-    gap:6px;
-}
-
-.move-btn{
-    width:42px;
-    height:38px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#fff;
-    color:#374151;
-    border:1px solid #dfe4e1;
-    border-radius:8px;
-    font-size:17px;
-    cursor:pointer;
-    transition:.15s ease;
-}
-
-.move-btn:hover{
-    background:#f0f5f2;
-    border-color:#08752d;
-    color:#08752d;
-}
-
-.move-btn:active{
-    transform:scale(.95);
-}
-
-.empty{
-    visibility:hidden;
-}
-
-/* BUTTONS */
-
-.btn{
-    width:100%;
-    min-height:48px;
-    padding:11px 16px;
-    border:0;
-    border-radius:11px;
-    font-family:inherit;
-    font-size:14px;
-    font-weight:750;
-    cursor:pointer;
-    transition:.15s ease;
-}
-
-.btn:hover{
-    transform:translateY(-1px);
-}
-
-.btn:active{
-    transform:scale(.98);
-}
-
-.generate{
-    background:linear-gradient(135deg,#08752d,#066d26);
-    color:#fff;
-    box-shadow:0 5px 14px rgba(8,117,45,.20);
-}
-
-.download{
-    background:linear-gradient(135deg,#ed0870,#d90062);
-    color:#fff;
-    box-shadow:0 5px 14px rgba(233,0,104,.18);
-}
-
-.reset{
-    background:#f1f3f2;
-    color:#56615a;
-    border:1px solid #e0e5e2;
-}
-
-/* PREVIEW */
-
-.preview{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    min-width:0;
-}
-
-.preview-title{
-    width:100%;
-    margin-bottom:12px;
-    color:#374151;
-    font-size:14px;
-    font-weight:750;
-    text-align:center;
-}
-
-.canvas-box{
-    width:100%;
-    max-width:500px;
-    padding:7px;
-    background:#f1f3f2;
-    border:1px solid #dfe5e1;
-    border-radius:14px;
-    box-shadow:0 8px 25px rgba(0,0,0,.07);
-    overflow:hidden;
-}
-
-canvas{
-    display:block;
-    width:100%;
-    height:auto;
-    border-radius:9px;
-    cursor:grab;
-    touch-action:none;
-}
-
-canvas:active{
-    cursor:grabbing;
-}
-
-.info{
-    max-width:500px;
-    margin-top:11px;
-    color:#7b8490;
-    font-size:12px;
-    line-height:1.6;
-    text-align:center;
-}
-
-.status{
-    min-height:18px;
-    margin-top:2px;
-    color:#08752d;
-    font-size:12px;
-    font-weight:600;
-    text-align:center;
-}
-
-/* MOBILE */
-
-@media(max-width:800px){
-
-    .layout{
-        grid-template-columns:1fr;
-        gap:20px;
-    }
-
-    .preview{
-        order:1;
-    }
-
-    .controls{
-        order:2;
-    }
-}
-
-@media(max-width:480px){
-
-    .app{
-        padding:15px 9px 30px;
-    }
-
-    .card{
-        padding:11px;
-        border-radius:17px;
-    }
-
-    .section{
-        padding:13px;
-    }
-
-    .canvas-box{
-        padding:4px;
-    }
-
-    .btn{
-        min-height:46px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Generator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cropper.js CSS & JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+        }
+        .modal-bg {
+            background-color: rgba(0, 0, 0, 0.75);
+        }
+    </style>
 </head>
+<body class="min-h-screen flex items-center justify-center p-2 sm:p-4 text-slate-800">
 
-<body>
-
-<div class="app">
-
-<header class="header">
-
-    <div class="badge">
-        ✨ PERSONALISE YOUR POSTER
-    </div>
-
-    <h1>
-        Create Personalised Poster
-    </h1>
-
-    <p class="support-text">
-        To Support the Campaign
-    </p>
-
-    <div class="campaign-name">
-        Madina Passion
-    </div>
-
-    <p class="description">
-        Create and download your poster with your own image
-    </p>
-
-</header>
-
-
-<main class="card">
-
-<div class="layout">
-
-
-<!-- CONTROLS -->
-
-<div class="controls">
-
-
-<!-- NAME -->
-
-<div class="section">
-
-    <div class="section-title">
-        👤 Your Name
-    </div>
-
-    <input
-        type="text"
-        id="name"
-        placeholder="Enter your name"
-        maxlength="50"
-        autocomplete="off"
-    >
-
-</div>
-
-
-<!-- PHOTO -->
-
-<div class="section">
-
-    <div class="section-title">
-        📷 Your Photo
-    </div>
-
-    <input
-        class="file-input"
-        type="file"
-        id="photo"
-        accept="image/*"
-    >
-
-</div>
-
-
-<!-- ZOOM -->
-
-<div class="section">
-
-    <div class="section-title">
-        🔍 Photo Zoom
-    </div>
-
-    <div class="zoom-row">
-
-        <input
-            type="range"
-            id="zoom"
-            min="0.7"
-            max="2.5"
-            value="1"
-            step="0.01"
-        >
-
-        <div
-            class="zoom-value"
-            id="zoomValue">
-            100%
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden my-4 border border-slate-200">
+        
+        <!-- Canvas Preview Area -->
+        <div class="p-4 bg-slate-100 flex justify-center items-center border-b border-slate-200">
+            <div class="relative w-full max-w-[340px] aspect-[1/1.25] shadow-lg rounded-xl overflow-hidden bg-slate-300 flex items-center justify-center">
+                <canvas id="posterCanvas" class="w-full h-full block rounded-xl"></canvas>
+            </div>
         </div>
 
+        <!-- FORM STEP 1: Input Name & Select Photo -->
+        <div id="stepInput" class="p-6 space-y-4">
+            <div>
+                <label for="userNameInput" class="block text-sm font-semibold text-slate-700 mb-1">
+                    Name / പേര്
+                </label>
+                <input type="text" id="userNameInput" placeholder="Enter your name..." 
+                    class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl text-slate-800 text-base focus:outline-none focus:border-blue-600 transition duration-200">
+            </div>
+
+            <button id="btnOpenModal" 
+                class="w-full py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-base shadow-md hover:shadow-lg transition duration-200 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-image"></i>
+                <span>SELECT PHOTO & CROP</span>
+            </button>
+        </div>
+
+        <!-- FORM STEP 2: Poster Actions -->
+        <div id="stepSuccess" class="hidden p-6 space-y-3 bg-slate-50">
+            <button id="btnDownload" 
+                class="w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow transition flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-download text-lg"></i>
+                <span>Download Poster</span>
+            </button>
+
+            <button id="btnShareWA" 
+                class="w-full py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-xl shadow transition flex items-center justify-center space-x-2">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Share to WhatsApp</span>
+            </button>
+
+            <button id="btnReset" 
+                class="w-full py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl transition flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span>Create Another Poster</span>
+            </button>
+        </div>
     </div>
 
-</div>
+    <!-- CROPPER MODAL -->
+    <div id="cropModal" class="fixed inset-0 z-50 modal-bg flex items-center justify-center p-3 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <div class="p-4 border-b flex justify-between items-center bg-slate-50">
+                <h3 class="text-base font-bold text-slate-800">Select & Crop Photo</h3>
+                <button id="btnCloseModal" class="text-slate-400 hover:text-slate-600 text-2xl leading-none font-bold">&times;</button>
+            </div>
 
+            <div class="p-3 border-b">
+                <div class="flex border rounded-xl overflow-hidden">
+                    <input type="text" id="fileNameDisplay" placeholder="No file selected..." readonly 
+                        class="px-3 py-2 text-sm w-full bg-slate-50 text-slate-600 focus:outline-none">
+                    <label class="bg-blue-600 hover:bg-blue-700 px-4 py-2 text-sm font-semibold text-white cursor-pointer flex items-center">
+                        Browse
+                        <input type="file" id="fileInput" accept="image/*" class="hidden">
+                    </label>
+                </div>
+            </div>
 
-<!-- POSITION -->
+            <div class="p-3 flex-1 flex items-center justify-center overflow-hidden bg-slate-900 min-h-[260px] max-h-[380px]">
+                <div id="cropAreaContainer" class="w-full h-full flex items-center justify-center">
+                    <img id="imageToCrop" class="max-w-full max-h-full block" alt="Source image for cropping">
+                </div>
+            </div>
 
-<div class="section">
-
-    <div class="section-title">
-        ↔️ Photo Position
+            <div class="p-4 bg-slate-50 border-t flex justify-end space-x-3">
+                <button id="btnCancelCrop" 
+                    class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium rounded-xl text-sm transition">
+                    Cancel
+                </button>
+                <button id="btnCropApply" disabled 
+                    class="px-6 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold rounded-xl text-sm transition">
+                    Apply & Crop
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div class="move-grid">
-
-        <button class="move-btn empty"></button>
-
-        <button
-            class="move-btn"
-            onclick="movePhoto(0,-5)">
-            ↑
-        </button>
-
-        <button class="move-btn empty"></button>
-
-
-        <button
-            class="move-btn"
-            onclick="movePhoto(-5,0)">
-            ←
-        </button>
-
-        <button
-            class="move-btn"
-            onclick="resetPosition()">
-            ●
-        </button>
-
-        <button
-            class="move-btn"
-            onclick="movePhoto(5,0)">
-            →
-        </button>
-
-
-        <button class="move-btn empty"></button>
-
-        <button
-            class="move-btn"
-            onclick="movePhoto(0,5)">
-            ↓
-        </button>
-
-        <button class="move-btn empty"></button>
-
-    </div>
-
-</div>
-
-
-<!-- GENERATE -->
-
-<button
-    class="btn generate"
-    onclick="generatePoster()">
-
-    ✨ Generate Poster
-
-</button>
-
-
-<!-- DOWNLOAD -->
-
-<button
-    class="btn download"
-    onclick="downloadPoster()">
-
-    ⬇ Download Poster
-
-</button>
-
-
-<!-- RESET -->
-
-<button
-    class="btn reset"
-    onclick="resetAll()">
-
-    ↻ Reset
-
-</button>
-
-
-<div
-    class="status"
-    id="status">
-</div>
-
-</div>
-
-
-<!-- PREVIEW -->
-
-<div class="preview">
-
-    <div class="preview-title">
-        Poster Preview
-    </div>
-
-    <div class="canvas-box">
-
-        <canvas
-            id="canvas"
-            width="500"
-            height="600">
-        </canvas>
-
-    </div>
-
-    <div class="info">
-        Upload your photo, adjust the zoom,
-        and drag the photo to position it perfectly.
-    </div>
-
-</div>
-
-
-</div>
-
-</main>
-
-</div>
-
-
-<script>
-
-/* =====================================================
-   GOOGLE DRIVE BACKGROUND
-===================================================== */
-
-const GOOGLE_DRIVE_FILE_ID =
-    "17b7bFh3qKrGKVSlIpgAgiMmhJQ04eIoO";
-
-
-const BACKGROUND_URL =
-    "https://drive.google.com/uc?export=download&id=" +
-    GOOGLE_DRIVE_FILE_ID;
-
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
-const canvas =
-    document.getElementById("canvas");
-
-const ctx =
-    canvas.getContext("2d");
-
-const nameInput =
-    document.getElementById("name");
-
-const photoInput =
-    document.getElementById("photo");
-
-const zoomInput =
-    document.getElementById("zoom");
-
-const zoomValue =
-    document.getElementById("zoomValue");
-
-const status =
-    document.getElementById("status");
-
-
-/* =====================================================
-   CANVAS
-===================================================== */
-
-const W = 500;
-const H = 600;
-
-
-/* =====================================================
-   PHOTO POSITION
-   Change these values if needed
-===================================================== */
-
-const PHOTO_BOX = {
-
-    x:153,
-
-    y:412,
-
-    width:113,
-
-    height:153,
-
-    radius:30
-
-};
-
-
-/* =====================================================
-   NAME POSITION
-===================================================== */
-
-const NAME_AREA = {
-
-    centerX:382,
-
-    centerY:475,
-
-    maxWidth:205
-
-};
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-let background =
-    new Image();
-
-let userPhoto =
-    null;
-
-let photoX =
-    0;
-
-let photoY =
-    0;
-
-let photoZoom =
-    1;
-
-
-/* =====================================================
-   LOAD GOOGLE DRIVE BACKGROUND
-===================================================== */
-
-background.crossOrigin =
-    "anonymous";
-
-background.onload =
-    function(){
-
-        drawPoster();
-
-        showStatus(
-            "Background loaded successfully."
-        );
-
-    };
-
-
-background.onerror =
-    function(){
-
-        ctx.fillStyle =
-            "#eeeeee";
-
-        ctx.fillRect(
-            0,
-            0,
-            W,
-            H
-        );
-
-        ctx.fillStyle =
-            "#555";
-
-        ctx.font =
-            "bold 16px Arial";
-
-        ctx.textAlign =
-            "center";
-
-        ctx.fillText(
-            "Unable to load background image",
-            W / 2,
-            H / 2
-        );
-
-    };
-
-
-background.src =
-    BACKGROUND_URL;
-
-
-/* =====================================================
-   PHOTO UPLOAD
-===================================================== */
-
-photoInput.addEventListener(
-    "change",
-    function(event){
-
-        const file =
-            event.target.files[0];
-
-        if(!file){
-            return;
-        }
-
-        if(
-            !file.type.startsWith("image/")
-        ){
-
-            showStatus(
-                "Please select a valid image.",
-                true
-            );
-
-            photoInput.value = "";
-
-            return;
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(e){
-
-                const img =
-                    new Image();
-
-
-                img.onload =
-                    function(){
-
-                        userPhoto =
-                            img;
-
-                        photoX =
-                            0;
-
-                        photoY =
-                            0;
-
-                        photoZoom =
-                            1;
-
-                        zoomInput.value =
-                            1;
-
-                        updateZoomText();
-
-                        drawPoster();
-
-                        showStatus(
-                            "Photo uploaded successfully."
-                        );
-
-                    };
-
-
-                img.src =
-                    e.target.result;
-
+    <script>
+        const canvas = document.getElementById('posterCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        const stepInput = document.getElementById('stepInput');
+        const stepSuccess = document.getElementById('stepSuccess');
+        const userNameInput = document.getElementById('userNameInput');
+        
+        const cropModal = document.getElementById('cropModal');
+        const fileInput = document.getElementById('fileInput');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const imageToCrop = document.getElementById('imageToCrop');
+        
+        const btnOpenModal = document.getElementById('btnOpenModal');
+        const btnCloseModal = document.getElementById('btnCloseModal');
+        const btnCancelCrop = document.getElementById('btnCancelCrop');
+        const btnCropApply = document.getElementById('btnCropApply');
+        
+        const btnDownload = document.getElementById('btnDownload');
+        const btnShareWA = document.getElementById('btnShareWA');
+        const btnReset = document.getElementById('btnReset');
+
+        let cropper = null;
+        let basePosterImg = null;
+        let croppedUserImg = null;
+        let currentUserName = '';
+
+        // Poster slot coordinates tailored for the campaign template slot
+        let POSTER_WIDTH = 1000;
+        let POSTER_HEIGHT = 1250;
+
+        const SLOT = {
+            x: 505,
+            y: 540,
+            w: 400,
+            h: 480,
+            radius: 40
+        };
+
+        window.onload = function() {
+            loadBasePoster();
+        };
+
+        function loadBasePoster() {
+            basePosterImg = new Image();
+            basePosterImg.crossOrigin = "anonymous";
+            
+            // Try loading local 1.png first
+            basePosterImg.src = '1.png';
+            
+            basePosterImg.onload = function() {
+                POSTER_WIDTH = basePosterImg.naturalWidth || 1000;
+                POSTER_HEIGHT = basePosterImg.naturalHeight || 1250;
+                canvas.width = POSTER_WIDTH;
+                canvas.height = POSTER_HEIGHT;
+                renderPoster();
             };
 
-
-        reader.readAsDataURL(file);
-
-    }
-);
-
-
-/* =====================================================
-   NAME
-===================================================== */
-
-nameInput.addEventListener(
-    "input",
-    function(){
-
-        drawPoster();
-
-    }
-);
-
-
-/* =====================================================
-   ZOOM
-===================================================== */
-
-zoomInput.addEventListener(
-    "input",
-    function(){
-
-        photoZoom =
-            Number(
-                zoomInput.value
-            );
-
-        updateZoomText();
-
-        drawPoster();
-
-    }
-);
-
-
-function updateZoomText(){
-
-    zoomValue.textContent =
-        Math.round(
-            photoZoom * 100
-        ) + "%";
-
-}
-
-
-/* =====================================================
-   ROUNDED RECTANGLE
-===================================================== */
-
-function roundedRect(
-    context,
-    x,
-    y,
-    width,
-    height,
-    radius
-){
-
-    radius =
-        Math.min(
-            radius,
-            width / 2,
-            height / 2
-        );
-
-
-    context.beginPath();
-
-    context.moveTo(
-        x + radius,
-        y
-    );
-
-    context.lineTo(
-        x + width - radius,
-        y
-    );
-
-    context.quadraticCurveTo(
-        x + width,
-        y,
-        x + width,
-        y + radius
-    );
-
-    context.lineTo(
-        x + width,
-        y + height - radius
-    );
-
-    context.quadraticCurveTo(
-        x + width,
-        y + height,
-        x + width - radius,
-        y + height
-    );
-
-    context.lineTo(
-        x + radius,
-        y + height
-    );
-
-    context.quadraticCurveTo(
-        x,
-        y + height,
-        x,
-        y + height - radius
-    );
-
-    context.lineTo(
-        x,
-        y + radius
-    );
-
-    context.quadraticCurveTo(
-        x,
-        y,
-        x + radius,
-        y
-    );
-
-    context.closePath();
-
-}
-
-
-/* =====================================================
-   DRAW PHOTO
-===================================================== */
-
-function drawPhoto(){
-
-    if(!userPhoto){
-        return;
-    }
-
-
-    const b =
-        PHOTO_BOX;
-
-
-    const baseScale =
-        Math.max(
-            b.width /
-                userPhoto.width,
-
-            b.height /
-                userPhoto.height
-        );
-
-
-    const scale =
-        baseScale *
-        photoZoom;
-
-
-    const drawWidth =
-        userPhoto.width *
-        scale;
-
-
-    const drawHeight =
-        userPhoto.height *
-        scale;
-
-
-    const centerX =
-        b.x +
-        b.width / 2 +
-        photoX;
-
-
-    const centerY =
-        b.y +
-        b.height / 2 +
-        photoY;
-
-
-    const x =
-        centerX -
-        drawWidth / 2;
-
-
-    const y =
-        centerY -
-        drawHeight / 2;
-
-
-    ctx.save();
-
-
-    roundedRect(
-        ctx,
-        b.x,
-        b.y,
-        b.width,
-        b.height,
-        b.radius
-    );
-
-
-    ctx.clip();
-
-
-    ctx.drawImage(
-        userPhoto,
-        x,
-        y,
-        drawWidth,
-        drawHeight
-    );
-
-
-    ctx.restore();
-
-
-    /* BORDER */
-
-    ctx.save();
-
-    roundedRect(
-        ctx,
-        b.x,
-        b.y,
-        b.width,
-        b.height,
-        b.radius
-    );
-
-    ctx.strokeStyle =
-        "#f1d500";
-
-    ctx.lineWidth =
-        6;
-
-    ctx.stroke();
-
-    ctx.restore();
-
-}
-
-
-/* =====================================================
-   DRAW NAME
-===================================================== */
-
-function drawName(){
-
-    const name =
-        nameInput.value.trim();
-
-
-    if(!name){
-        return;
-    }
-
-
-    let fontSize =
-        37;
-
-
-    if(name.length > 12)
-        fontSize = 33;
-
-    if(name.length > 18)
-        fontSize = 29;
-
-    if(name.length > 25)
-        fontSize = 25;
-
-    if(name.length > 32)
-        fontSize = 21;
-
-
-    ctx.save();
-
-
-    ctx.fillStyle =
-        "#fff000";
-
-    ctx.textAlign =
-        "center";
-
-    ctx.textBaseline =
-        "middle";
-
-    ctx.font =
-        "bold " +
-        fontSize +
-        "px Arial";
-
-
-    ctx.shadowColor =
-        "rgba(0,0,0,.4)";
-
-    ctx.shadowBlur =
-        2;
-
-    ctx.shadowOffsetX =
-        1;
-
-    ctx.shadowOffsetY =
-        2;
-
-
-    const words =
-        name.split(/\s+/);
-
-
-    const lines =
-        [];
-
-    let current =
-        "";
-
-
-    words.forEach(
-        function(word){
-
-            const test =
-                current
-                ? current + " " + word
-                : word;
-
-
-            if(
-                ctx.measureText(test).width >
-                NAME_AREA.maxWidth
-                &&
-                current
-            ){
-
-                lines.push(
-                    current
-                );
-
-                current =
-                    word;
-
-            }else{
-
-                current =
-                    test;
-
+            basePosterImg.onerror = function() {
+                // Google Drive direct export fallback link if local 1.png is missing
+                console.warn("1.png not found locally. Loading Google Drive fallback link...");
+                basePosterImg.src = 'https://drive.google.com/uc?export=download&id=14-mJHgu5Ur-cI0U0Dv497p98ZXdo4zFC';
+            };
+        }
+
+        function renderPoster() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw template background
+            if (basePosterImg && basePosterImg.complete && basePosterImg.naturalWidth !== 0) {
+                ctx.drawImage(basePosterImg, 0, 0, canvas.width, canvas.height);
             }
 
-        }
-    );
+            // Draw cropped user photo inside the slot
+            if (croppedUserImg) {
+                ctx.save();
+                ctx.beginPath();
+                ctx.roundRect(SLOT.x, SLOT.y, SLOT.w, SLOT.h, SLOT.radius);
+                ctx.clip();
+                ctx.drawImage(croppedUserImg, SLOT.x, SLOT.y, SLOT.w, SLOT.h);
+                ctx.restore();
+            }
 
+            // Draw user name overlay
+            if (currentUserName.trim() !== '') {
+                ctx.save();
+                const nameY = SLOT.y + SLOT.h - 60;
+                
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+                ctx.beginPath();
+                ctx.roundRect(SLOT.x + 4, nameY, SLOT.w - 8, 55, [0, 0, 25, 25]);
+                ctx.fill();
 
-    if(current){
-        lines.push(current);
-    }
-
-
-    /* Keep maximum 3 lines */
-
-    if(lines.length > 3){
-
-        const last =
-            lines
-                .slice(2)
-                .join(" ");
-
-        lines.length = 0;
-
-        lines.push(
-            name
-                .split(/\s+/)
-                .slice(0,2)
-                .join(" "),
-
-            last
-        );
-
-    }
-
-
-    const lineHeight =
-        fontSize + 6;
-
-
-    const totalHeight =
-        lines.length *
-        lineHeight;
-
-
-    const startY =
-        NAME_AREA.centerY -
-        totalHeight / 2 +
-        lineHeight / 2;
-
-
-    lines.forEach(
-        function(line,index){
-
-            ctx.fillText(
-                line,
-                NAME_AREA.centerX,
-                startY +
-                index * lineHeight
-            );
-
-        }
-    );
-
-
-    ctx.restore();
-
-}
-
-
-/* =====================================================
-   DRAW POSTER
-===================================================== */
-
-function drawPoster(){
-
-    ctx.clearRect(
-        0,
-        0,
-        W,
-        H
-    );
-
-
-    if(
-        background.complete &&
-        background.naturalWidth > 0
-    ){
-
-        ctx.drawImage(
-            background,
-            0,
-            0,
-            W,
-            H
-        );
-
-    }else{
-
-        ctx.fillStyle =
-            "#eeeeee";
-
-        ctx.fillRect(
-            0,
-            0,
-            W,
-            H
-        );
-
-    }
-
-
-    drawPhoto();
-
-    drawName();
-
-}
-
-
-/* =====================================================
-   MOVE PHOTO
-===================================================== */
-
-function movePhoto(x,y){
-
-    photoX += x;
-
-    photoY += y;
-
-    drawPoster();
-
-}
-
-
-/* =====================================================
-   RESET POSITION
-===================================================== */
-
-function resetPosition(){
-
-    photoX = 0;
-
-    photoY = 0;
-
-    drawPoster();
-
-}
-
-
-/* =====================================================
-   MOUSE DRAG
-===================================================== */
-
-let dragging =
-    false;
-
-let lastMouseX =
-    0;
-
-let lastMouseY =
-    0;
-
-
-canvas.addEventListener(
-    "mousedown",
-    function(event){
-
-        if(!userPhoto){
-            return;
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 30px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(currentUserName.trim(), SLOT.x + (SLOT.w / 2), nameY + 28);
+                ctx.restore();
+            }
         }
 
-        dragging =
-            true;
+        btnOpenModal.addEventListener('click', () => {
+            cropModal.classList.remove('hidden');
+        });
 
-        lastMouseX =
-            event.clientX;
-
-        lastMouseY =
-            event.clientY;
-
-    }
-);
-
-
-window.addEventListener(
-    "mousemove",
-    function(event){
-
-        if(!dragging){
-            return;
+        function closeModal() {
+            cropModal.classList.add('hidden');
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            imageToCrop.src = '';
+            fileInput.value = '';
+            fileNameDisplay.value = 'No file selected...';
+            btnCropApply.disabled = true;
         }
 
-
-        const rect =
-            canvas.getBoundingClientRect();
-
-
-        const scaleX =
-            W / rect.width;
-
-        const scaleY =
-            H / rect.height;
-
-
-        photoX +=
-            (
-                event.clientX -
-                lastMouseX
-            ) * scaleX;
-
-
-        photoY +=
-            (
-                event.clientY -
-                lastMouseY
-            ) * scaleY;
-
-
-        lastMouseX =
-            event.clientX;
-
-        lastMouseY =
-            event.clientY;
-
-
-        drawPoster();
-
-    }
-);
-
-
-window.addEventListener(
-    "mouseup",
-    function(){
-
-        dragging =
-            false;
-
-    }
-);
-
-
-/* =====================================================
-   TOUCH DRAG
-===================================================== */
-
-let touchX =
-    0;
-
-let touchY =
-    0;
-
-
-canvas.addEventListener(
-    "touchstart",
-    function(event){
-
-        if(!userPhoto){
-            return;
-        }
-
-
-        const touch =
-            event.touches[0];
-
-
-        touchX =
-            touch.clientX;
-
-        touchY =
-            touch.clientY;
-
-    },
-    {
-        passive:true
-    }
-);
-
-
-canvas.addEventListener(
-    "touchmove",
-    function(event){
-
-        if(!userPhoto){
-            return;
-        }
-
-
-        const touch =
-            event.touches[0];
-
-
-        const rect =
-            canvas.getBoundingClientRect();
-
-
-        const scaleX =
-            W / rect.width;
-
-        const scaleY =
-            H / rect.height;
-
-
-        photoX +=
-            (
-                touch.clientX -
-                touchX
-            ) * scaleX;
-
-
-        photoY +=
-            (
-                touch.clientY -
-                touchY
-            ) * scaleY;
-
-
-        touchX =
-            touch.clientX;
-
-        touchY =
-            touch.clientY;
-
-
-        drawPoster();
-
-    },
-    {
-        passive:true
-    }
-);
-
-
-/* =====================================================
-   GENERATE
-===================================================== */
-
-function generatePoster(){
-
-    const name =
-        nameInput.value.trim();
-
-
-    if(!name){
-
-        showStatus(
-            "Please enter your name.",
-            true
-        );
-
-        nameInput.focus();
-
-        return;
-    }
-
-
-    if(!userPhoto){
-
-        showStatus(
-            "Please upload your photo.",
-            true
-        );
-
-        photoInput.click();
-
-        return;
-    }
-
-
-    drawPoster();
-
-
-    showStatus(
-        "Poster generated successfully."
-    );
-
-}
-
-
-/* =====================================================
-   DOWNLOAD
-===================================================== */
-
-function downloadPoster(){
-
-    const name =
-        nameInput.value.trim();
-
-
-    if(!name){
-
-        showStatus(
-            "Please enter your name.",
-            true
-        );
-
-        nameInput.focus();
-
-        return;
-    }
-
-
-    if(!userPhoto){
-
-        showStatus(
-            "Please upload your photo.",
-            true
-        );
-
-        photoInput.click();
-
-        return;
-    }
-
-
-    drawPoster();
-
-
-    let cleanName =
-        name
-        .replace(
-            /[^\p{L}\p{N}\s_-]/gu,
-            ""
-        )
-        .trim()
-        .replace(
-            /\s+/g,
-            "_"
-        )
-        .substring(
-            0,
-            40
-        );
-
-
-    if(!cleanName){
-        cleanName =
-            "Poster";
-    }
-
-
-    try{
-
-        const link =
-            document.createElement("a");
-
-
-        link.download =
-            "Madina_Passion_" +
-            cleanName +
-            ".png";
-
-
-        link.href =
-            canvas.toDataURL(
-                "image/png",
-                1
-            );
-
-
-        document.body.appendChild(
-            link
-        );
-
-
-        link.click();
-
-
-        document.body.removeChild(
-            link
-        );
-
-
-        showStatus(
-            "Poster downloaded successfully."
-        );
-
-    }catch(error){
-
-        showStatus(
-            "Download failed. Please check the Google Drive image permissions.",
-            true
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   RESET
-===================================================== */
-
-function resetAll(){
-
-    nameInput.value =
-        "";
-
-    photoInput.value =
-        "";
-
-    userPhoto =
-        null;
-
-    photoX =
-        0;
-
-    photoY =
-        0;
-
-    photoZoom =
-        1;
-
-    zoomInput.value =
-        1;
-
-    updateZoomText();
-
-    drawPoster();
-
-    showStatus("");
-
-}
-
-
-/* =====================================================
-   STATUS
-===================================================== */
-
-function showStatus(
-    message,
-    error=false
-){
-
-    status.textContent =
-        message;
-
-    status.style.color =
-        error
-        ? "#dc2626"
-        : "#08752d";
-
-}
-
-
-/* =====================================================
-   START
-===================================================== */
-
-updateZoomText();
-
-drawPoster();
-
-</script>
-
+        btnCloseModal.addEventListener('click', closeModal);
+        btnCancelCrop.addEventListener('click', closeModal);
+
+        fileInput.addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files && files.length > 0) {
+                const file = files[0];
+                fileNameDisplay.value = file.name;
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imageToCrop.src = e.target.result;
+                    
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+
+                    cropper = new Cropper(imageToCrop, {
+                        aspectRatio: SLOT.w / SLOT.h,
+                        viewMode: 1,
+                        background: true,
+                        autoCropArea: 0.9,
+                        responsive: true
+                    });
+
+                    btnCropApply.disabled = false;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        btnCropApply.addEventListener('click', () => {
+            if (!cropper) return;
+
+            const croppedCanvas = cropper.getCroppedCanvas({
+                width: SLOT.w,
+                height: SLOT.h,
+                imageSmoothingEnabled: true,
+                imageSmoothingQuality: 'high'
+            });
+
+            croppedUserImg = new Image();
+            croppedUserImg.onload = function() {
+                currentUserName = userNameInput.value;
+                renderPoster();
+                closeModal();
+                
+                stepInput.classList.add('hidden');
+                stepSuccess.classList.remove('hidden');
+            };
+            croppedUserImg.src = croppedCanvas.toDataURL('image/png');
+        });
+
+        userNameInput.addEventListener('input', (e) => {
+            currentUserName = e.target.value;
+            renderPoster();
+        });
+
+        btnDownload.addEventListener('click', () => {
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'Poster_Output.png';
+            link.href = dataUrl;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        btnShareWA.addEventListener('click', () => {
+            const shareText = encodeURIComponent('Check out my poster!');
+            window.open(`https://api.whatsapp.com/send?text=${shareText}`, '_blank');
+        });
+
+        btnReset.addEventListener('click', () => {
+            croppedUserImg = null;
+            currentUserName = '';
+            userNameInput.value = '';
+            renderPoster();
+            stepSuccess.classList.add('hidden');
+            stepInput.classList.remove('hidden');
+        });
+    </script>
 </body>
 </html>
